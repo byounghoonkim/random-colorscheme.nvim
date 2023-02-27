@@ -66,13 +66,15 @@ function M.setup(opts)
 			rc.Next()
 		elseif opts.args == "prev" then
 			rc.Prev()
+		elseif opts.args == "list" then
+			rc.List()
 		else
 			rc.Rand()
 		end
 	end, {
 		nargs = 1,
 		complete = function(ArgLead, CmdLine, CursorPos)
-			return { "rand", "next", "prev" }
+			return { "rand", "next", "prev", "list" }
 		end,
 	})
 
