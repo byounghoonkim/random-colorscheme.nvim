@@ -64,6 +64,16 @@ function M.setup(opts)
 	end
 end
 
+M.List = function()
+	for index, value in ipairs(M.config.colorschemes) do
+		if index == M._current then
+			print(value .. " (current)")
+		else
+			print(value)
+		end
+	end
+end
+
 M.Rand = function()
 	local function random_number(limit)
 		return ((os.time() % limit) + 1)
