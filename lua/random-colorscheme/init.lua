@@ -6,6 +6,7 @@ M.config = {
 	random_on_startup = false,
 	exclude_default_colorschems = true,
 	colorschemes = nil,
+	show_current = true,
 }
 
 local default_colorschemes = {
@@ -80,6 +81,9 @@ M.Rand = function()
 	end
 	M._current = random_number(#M.config.colorschemes)
 	pcall(vim.cmd.colorscheme, M.config.colorschemes[M._current])
+	if M.config.show_current then
+		print(vim.cmd.colorscheme())
+	end
 end
 
 M.Next = function()
@@ -89,6 +93,9 @@ M.Next = function()
 		M._current = M._current + 1
 	end
 	pcall(vim.cmd.colorscheme, M.config.colorschemes[M._current])
+	if M.config.show_current then
+		print(vim.cmd.colorscheme())
+	end
 end
 
 M.Prev = function()
@@ -98,6 +105,9 @@ M.Prev = function()
 		M._current = M._current - 1
 	end
 	pcall(vim.cmd.colorscheme, M.config.colorschemes[M._current])
+	if M.config.show_current then
+		print(vim.cmd.colorscheme())
+	end
 end
 
 return M
