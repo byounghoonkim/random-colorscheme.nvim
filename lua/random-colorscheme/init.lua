@@ -1,8 +1,10 @@
 local M = {}
 
+M._current = 1
+M._colors = {}
+
 function M.setup(opts)
 	local colors = vim.fn.getcompletion("", "color")
-	local temp_schemes = {}
 	local default_colors = {
 		"blue",
 		"darkblue",
@@ -39,13 +41,37 @@ function M.setup(opts)
 		if table_contains(default_colors, value) then
 		-- skip default colorscheme
 		else
-			table.insert(temp_schemes, value)
+			table.insert(M._colors, value)
 		end
 	end
+
+	M.Rand()
+end
+
+M.Rand = function()
 	local function random_number(limit)
 		return ((os.time() % limit) + 1)
 	end
-	pcall(vim.cmd.colorscheme, temp_schemes[random_number(#temp_schemes)])
+	M._current = random_number(#M._colors)
+	pcall(vim.cmd.colorscheme, M._colors[M._current])
+end
+
+M.Next = function()
+	if M._current >= #M._colors then
+		M._current = 1
+	else
+		M._current = M._current + 1
+	end
+	pcall(vim.cmd.colorscheme, M._colors[M._current])
+end
+
+M.Prev = function()
+	if M._current <= 1 then
+		M._current = #M._colors
+	else
+		M._current = M._current - 1
+	end
+	pcall(vim.cmd.colorscheme, M._colors[M._current])
 end
 
 return M
