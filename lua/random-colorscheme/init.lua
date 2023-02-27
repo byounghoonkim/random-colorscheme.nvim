@@ -3,7 +3,7 @@ local M = {}
 M._current = 1
 
 M.config = {
-	random_on_startup = false,
+	random_on_startup = true,
 	exclude_default_colorschems = true,
 	colorschemes = nil,
 	show_current = true,
