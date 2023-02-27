@@ -60,6 +60,22 @@ function M.setup(opts)
 		end
 	end
 
+	vim.api.nvim_create_user_command("RandomColorscheme", function(opts)
+		local rc = require("random-colorscheme")
+		if opts.args == "next" then
+			rc.Next()
+		elseif opts.args == "prev" then
+			rc.Prev()
+		else
+			rc.Rand()
+		end
+	end, {
+		nargs = 1,
+		complete = function(ArgLead, CmdLine, CursorPos)
+			return { "rand", "next", "prev" }
+		end,
+	})
+
 	if M.config.random_on_startup then
 		M.Rand()
 	end

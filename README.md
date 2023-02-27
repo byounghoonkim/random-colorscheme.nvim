@@ -1,1 +1,1 @@
-# random-colorscheme.nvim
+# 🎨 random-colorscheme.nvim
