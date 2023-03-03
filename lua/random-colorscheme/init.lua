@@ -37,7 +37,7 @@ function M.setup(opts)
 	M.config = vim.tbl_deep_extend("keep", opts or {}, M.config)
 
 	if M.config.colorschemes then
-	-- use colorschemes
+	-- use user-defined colorschemes list
 	else
 		-- set colorschemes using installed list
 		M.config.colorschemes = {}
